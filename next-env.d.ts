@@ -1,1 +1,3 @@
-{"scripts":{"dev":"next dev","build":"next build","start":"next start"},"dependencies":{"next":"latest","react":"latest","react-dom":"latest","framer-motion":"latest","lucide-react":"latest"},"devDependencies":{"typescript":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","tailwindcss":"latest","postcss":"latest","autoprefixer":"latest"}}
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+module.exports = nextConfig;

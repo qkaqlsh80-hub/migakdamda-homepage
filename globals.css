@@ -1,0 +1,3 @@
+import './globals.css';
+export const metadata = { title: '미각담다', description: '전통 한식을 현대적인 감각으로 담아낸 코스 다이닝' };
+export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang="ko"><body>{children}</body></html>; }
