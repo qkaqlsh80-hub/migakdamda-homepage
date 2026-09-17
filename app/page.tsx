@@ -1,6 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function Reveal({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={`reveal ${visible ? "revealed" : ""} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 const naverMapUrl =
   "https://map.naver.com/p/entry/place/1644794960?c=15.00,0,0,0,dh";
@@ -52,9 +85,22 @@ const courses = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main className="site" id="home">
+      <header className={`topNav ${scrolled ? "visible" : ""}`}>
+        <span className="topNavLogo">미각담다</span>
+        <span className="topNavTag">Korean Dining</span>
+      </header>
+
       <button className="hamburger" onClick={() => setMenuOpen(true)}>
         <span />
         <span />
@@ -109,82 +155,92 @@ export default function Home() {
       </section>
 
       <section className="section courseSection" id="course">
-        <p className="eyebrow">Course</p>
-        <h2>두 가지 코스</h2>
+        <Reveal>
+          <p className="eyebrow">Course</p>
+          <h2>두 가지 코스</h2>
 
-        <div className="courseGrid">
-          {courses.map((course) => (
-            <button
-              key={course.id}
-              className={`card courseCard ${
-                selectedCourse.id === course.id ? "active" : ""
-              }`}
-              onClick={() => setSelectedCourse(course)}
-            >
-              <span>{course.number}</span>
-              <h3>{course.title}</h3>
-              <p>{course.subtitle}</p>
-              <strong>{course.price}</strong>
-            </button>
-          ))}
-        </div>
-
-        <div className="courseDetail">
-          <div className="courseDetailText">
-            <p className="eyebrow">Selected Course</p>
-            <h3>{selectedCourse.title}</h3>
-            <p>{selectedCourse.subtitle}</p>
-            <strong>{selectedCourse.price}</strong>
-
-            <ol>
-              {selectedCourse.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
-
-            <div className="heroButtons">
-              <a href={catchTableUrl} target="_blank" className="btn primary">
-                온라인예약
-              </a>
-              <a href={naverMapUrl} target="_blank" className="btn darkBtn">
-                길찾기
-              </a>
-            </div>
+          <div className="courseGrid">
+            {courses.map((course) => (
+              <button
+                key={course.id}
+                className={`card courseCard ${
+                  selectedCourse.id === course.id ? "active" : ""
+                }`}
+                onClick={() => setSelectedCourse(course)}
+              >
+                <span>{course.number}</span>
+                <h3>{course.title}</h3>
+                <p>{course.subtitle}</p>
+                <strong>{course.price}</strong>
+              </button>
+            ))}
           </div>
 
-          <img src={selectedCourse.image} alt={selectedCourse.title} />
-        </div>
+          <div className="courseDetail">
+            <div className="courseDetailText">
+              <p className="eyebrow">Selected Course</p>
+              <h3>{selectedCourse.title}</h3>
+              <p>{selectedCourse.subtitle}</p>
+              <strong>{selectedCourse.price}</strong>
+
+              <ol>
+                {selectedCourse.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+
+              <div className="heroButtons">
+                <a href={catchTableUrl} target="_blank" className="btn primary">
+                  온라인예약
+                </a>
+                <a href={naverMapUrl} target="_blank" className="btn darkBtn">
+                  길찾기
+                </a>
+              </div>
+            </div>
+
+            <img src={selectedCourse.image} alt={selectedCourse.title} />
+          </div>
+        </Reveal>
       </section>
 
       <section className="section dark" id="alacarte">
-        <p className="eyebrow">A La Carte</p>
-        <h2>곁들임 · 단품 메뉴</h2>
-        <p className="sectionDesc">
-          코스와 함께 즐기기 좋은 곁들임 메뉴와 단품 메뉴를 준비했습니다.
-        </p>
+        <Reveal>
+          <p className="eyebrow">A La Carte</p>
+          <h2>곁들임 · 단품 메뉴</h2>
+          <p className="sectionDesc">
+            코스와 함께 즐기기 좋은 곁들임 메뉴와 단품 메뉴를 준비했습니다.
+          </p>
+        </Reveal>
       </section>
 
       <section className="section" id="gallery">
-        <p className="eyebrow">Gallery</p>
-        <h2>미각담다 갤러리</h2>
+        <Reveal>
+          <p className="eyebrow">Gallery</p>
+          <h2>미각담다 갤러리</h2>
 
-        <div className="galleryGrid">
-          {galleryImages.map((img, index) => (
-            <img key={img} src={img} alt={`미각담다 갤러리 ${index + 1}`} />
-          ))}
-        </div>
+          <div className="galleryGrid">
+            {galleryImages.map((img, index) => (
+              <div className="galleryItem" key={img}>
+                <img src={img} alt={`미각담다 갤러리 ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       <section className="section dark" id="origin">
-        <p className="eyebrow">Origin</p>
-        <h2>원산지 표시</h2>
-        <p className="sectionDesc">
-          주요 식재료의 원산지는 매장 기준에 따라 투명하게 안내드립니다.
-        </p>
+        <Reveal>
+          <p className="eyebrow">Origin</p>
+          <h2>원산지 표시</h2>
+          <p className="sectionDesc">
+            주요 식재료의 원산지는 매장 기준에 따라 투명하게 안내드립니다.
+          </p>
+        </Reveal>
       </section>
 
       <section className="contactSection">
-        <div>
+        <Reveal>
           <div className="line" />
           <p className="eyebrow white">바로 여기서 기다리고 있어요</p>
           <h2>저희 레스토랑에<br />방문하세요</h2>
@@ -202,12 +258,12 @@ export default function Home() {
               온라인예약
             </a>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="contactImages">
+        <Reveal className="contactImages">
           <img src="/images/gallery_001.jpg" alt="미각담다 이미지" />
           <img src="/images/gallery_002.jpg" alt="미각담다 이미지" />
-        </div>
+        </Reveal>
       </section>
     </main>
   );
