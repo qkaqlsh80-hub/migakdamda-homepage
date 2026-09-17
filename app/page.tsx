@@ -20,7 +20,7 @@ const courses = [
     title: "맡김차림",
     subtitle: "한식의 정갈함을 부담 없이 경험할 수 있는 코스",
     price: "50,000원",
-    image: "/images/맡김차림01.jpg",
+    image: "/images/matgim-charim-01.jpg",
     items: [
       "제철 맞이 한입",
       "맑은 국물 또는 계절 죽",
@@ -37,7 +37,7 @@ const courses = [
     title: "알아차림",
     subtitle: "계절과 셰프의 구성을 담은 미각담다의 대표 코스",
     price: "80,000원",
-    image: "/images/알아차림01.jpg",
+    image: "/images/ara-charim-01.jpg",
     items: [
       "계절 한입",
       "오늘의 전채",
