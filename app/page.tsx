@@ -8,7 +8,7 @@ const naverMapUrl =
 const catchTableUrl =
   "https://app.catchtable.co.kr/ct/map/search-map?keyword=%EB%AF%B8%EA%B0%81%EB%8B%B4%EB%8B%A4%EB%8B%A4%EC%9D%B4%EB%8B%9D";
 
-const galleryImages = Array.from({ length: 18 }, (_, i) => {
+const galleryImages = Array.from({ length: 17 }, (_, i) => {
   const num = String(i + 1).padStart(3, "0");
   return `/images/gallery_${num}.jpg`;
 });
