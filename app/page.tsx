@@ -54,15 +54,7 @@ const courses = [
     subtitle: "한식의 정갈함을 부담 없이 경험할 수 있는 코스",
     price: "50,000원",
     image: "/images/matgim-charim-01.jpg",
-    items: [
-      "제철 맞이 한입",
-      "맑은 국물 또는 계절 죽",
-      "오늘의 생선 또는 해산물",
-      "제철 채소 요리",
-      "메인 육류 요리",
-      "식사",
-      "후식과 차",
-    ],
+    items: ["냉채", "전", "국수", "구이", "식사"],
   },
   {
     id: "alacha",
@@ -71,14 +63,7 @@ const courses = [
     subtitle: "계절과 셰프의 구성을 담은 미각담다의 대표 코스",
     price: "80,000원",
     image: "/images/ara-charim-01.jpg",
-    items: [
-      "계절 한입",
-      "오늘의 전채",
-      "따뜻한 국물",
-      "주요리",
-      "식사",
-      "후식",
-    ],
+    items: ["냉채", "전", "만두", "국수", "볶음", "구이", "식사"],
   },
 ];
 
@@ -122,7 +107,6 @@ export default function Home() {
 
             <nav className="sideLinks">
               <a href="#course" onClick={() => setMenuOpen(false)}>코스</a>
-              <a href="#alacarte" onClick={() => setMenuOpen(false)}>단품 메뉴</a>
               <a href="#gallery" onClick={() => setMenuOpen(false)}>갤러리</a>
               <a href="#origin" onClick={() => setMenuOpen(false)}>원산지</a>
               <a href={naverMapUrl} target="_blank">길찾기</a>
@@ -201,16 +185,6 @@ export default function Home() {
 
             <img src={selectedCourse.image} alt={selectedCourse.title} />
           </div>
-        </Reveal>
-      </section>
-
-      <section className="section dark" id="alacarte">
-        <Reveal>
-          <p className="eyebrow">A La Carte</p>
-          <h2>곁들임 · 단품 메뉴</h2>
-          <p className="sectionDesc">
-            코스와 함께 즐기기 좋은 곁들임 메뉴와 단품 메뉴를 준비했습니다.
-          </p>
         </Reveal>
       </section>
 
