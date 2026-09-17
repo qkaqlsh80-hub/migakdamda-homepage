@@ -365,6 +365,16 @@ h2 {
   margin-top: 1.5rem;
 }
 
+.mapLoading {
+  margin-top: 1.5rem;
+  padding: 8rem 0;
+  text-align: center;
+  color: var(--soil);
+  opacity: 0.6;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 1.5rem;
+}
+
 .koreaMapStage {
   position: relative;
   overflow: hidden;

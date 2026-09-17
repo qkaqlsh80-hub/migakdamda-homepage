@@ -12,12 +12,14 @@ export default function DrinkMap({
   namesKo,
   hint,
   mapKey,
+  unavailableLabel = " (준비중)",
 }: {
   mapData: MapData;
   info: Record<string, LiquorInfo | null>;
   namesKo: Record<string, string>;
   hint: string;
   mapKey: string;
+  unavailableLabel?: string;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const current = selected ? info[selected] : null;
@@ -39,7 +41,7 @@ export default function DrinkMap({
                   onClick={() => hasData && setSelected(r.id)}
                 >
                   <title>{`${namesKo[r.id] || r.label}${
-                    hasData ? "" : " (준비중)"
+                    hasData ? "" : unavailableLabel
                   }`}</title>
                 </path>
               );
