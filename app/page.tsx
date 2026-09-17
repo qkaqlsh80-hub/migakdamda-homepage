@@ -108,6 +108,7 @@ export default function Home() {
             <nav className="sideLinks">
               <a href="#course" onClick={() => setMenuOpen(false)}>코스</a>
               <a href="#gallery" onClick={() => setMenuOpen(false)}>갤러리</a>
+              <a href="#info" onClick={() => setMenuOpen(false)}>이용 안내</a>
               <a href="#origin" onClick={() => setMenuOpen(false)}>원산지</a>
               <a href={naverMapUrl} target="_blank">길찾기</a>
               <a href={catchTableUrl} target="_blank">온라인예약</a>
@@ -199,6 +200,58 @@ export default function Home() {
                 <img src={img} alt={`미각담다 갤러리 ${index + 1}`} />
               </div>
             ))}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="section dark" id="info">
+        <Reveal>
+          <p className="eyebrow">Guide</p>
+          <h2>이용 안내</h2>
+
+          <div className="infoGrid">
+            <div className="infoCard">
+              <h3>주차</h3>
+              <p>
+                매장 주차장(실내)
+                <br />
+                1시간 3,000원 · 추가 1시간당 3,000원
+              </p>
+              <p className="infoNote">
+                단성 오피스텔 유료 주차장(1시간 3,000원)도 이용 가능합니다.
+              </p>
+            </div>
+
+            <div className="infoCard">
+              <h3>콜키지</h3>
+              <p>
+                와인 · 병당 30,000원
+                <br />
+                위스키 · 병당 50,000원
+                <br />
+                기타 주류 · 병당 30,000원
+              </p>
+            </div>
+
+            <div className="infoCard">
+              <h3>룸 안내</h3>
+              <p>4~14인 · 인당 최소 50,000원 주문</p>
+              <p className="infoNote">
+                룸 2개, 각 6~7석 / 개방 시 12~14인 수용 가능
+                <br />
+                룸 이용 시 차림메뉴로만 진행됩니다.
+              </p>
+            </div>
+
+            <div className="infoCard">
+              <h3>이용 참고</h3>
+              <p>
+                코스와 술을 즐기는 다이닝 공간으로
+                <br />
+                노키즈존으로 운영됩니다.
+              </p>
+              <p className="infoNote">유아용 의자는 준비되어 있습니다.</p>
+            </div>
           </div>
         </Reveal>
       </section>
