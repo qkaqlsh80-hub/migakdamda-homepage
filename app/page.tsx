@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import DrinkMapTabs from "./components/DrinkMapTabs";
 
 function Reveal({
   children,
@@ -109,6 +110,7 @@ export default function Home() {
               <a href="#course" onClick={() => setMenuOpen(false)}>코스</a>
               <a href="#gallery" onClick={() => setMenuOpen(false)}>갤러리</a>
               <a href="#info" onClick={() => setMenuOpen(false)}>이용 안내</a>
+              <a href="#liquor" onClick={() => setMenuOpen(false)}>전통주</a>
               <a href="#origin" onClick={() => setMenuOpen(false)}>원산지</a>
               <a href={naverMapUrl} target="_blank">길찾기</a>
               <a href={catchTableUrl} target="_blank">온라인예약</a>
@@ -253,6 +255,17 @@ export default function Home() {
               <p className="infoNote">유아용 의자는 준비되어 있습니다.</p>
             </div>
           </div>
+        </Reveal>
+      </section>
+
+      <section className="section" id="liquor">
+        <Reveal>
+          <p className="eyebrow">Drinks Around the World</p>
+          <h2>전통주 · 와인 · 사케</h2>
+          <p className="sectionDesc">
+            지도에서 지역을 클릭하면 그 고장을 대표하는 술을 소개해드립니다.
+          </p>
+          <DrinkMapTabs />
         </Reveal>
       </section>
 
