@@ -4,13 +4,13 @@ import "./globals.css";
 
 const notoSansKR = Noto_Sans_KR({
   variable: "--font-sans",
-  subsets: ["korean"],
+  subsets: ["latin"],
   weight: ["400", "700"],
 });
 
 const notoSerifKR = Noto_Serif_KR({
   variable: "--font-serif",
-  subsets: ["korean"],
+  subsets: ["latin"],
   weight: ["500", "700"],
 });
 
