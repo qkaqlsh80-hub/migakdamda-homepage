@@ -144,7 +144,7 @@ export default function Home() {
       <section className="section courseSection" id="course">
         <Reveal>
           <p className="eyebrow">Course</p>
-          <h2>두 가지 코스</h2>
+          <h2>두 가지 차림</h2>
 
           <div className="courseGrid">
             {courses.map((course) => (
